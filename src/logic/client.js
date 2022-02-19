@@ -1,5 +1,5 @@
 function GetStatus(callback) {
-    const url = process.env.API_URL || "http://app:20003/statistics";
+    const url = process.env.API_URL || "https://hmapi.konkov.xyz/statistics";
     const options = {
         headers: {
             accept: "application/json"
