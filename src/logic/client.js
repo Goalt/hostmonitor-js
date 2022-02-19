@@ -1,5 +1,7 @@
+var localUrl = ""
+
 function GetStatus(callback) {
-    const url = process.env.API_URL || "https://hmapi.konkov.xyz/statistics";
+    const url = localUrl || "https://hmapi.konkov.xyz/statistics";
     const options = {
         headers: {
             accept: "application/json"
