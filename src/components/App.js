@@ -1,5 +1,6 @@
 import React from 'react';
 import { GetDefault, GetStatus } from '../logic/client';
+import { FormatStatus } from '../logic/format';
 import './App.css';
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
   tick() {
     var self = this;
     GetStatus(function (data) {
+      data = FormatStatus(data)
       self.setState({
         hostStatus: data
       });
@@ -85,12 +87,11 @@ class App extends React.Component {
 
 class DockerContainers extends React.Component {
   render() {
-    console.log(this.props.data)
-    console.log(typeof(this.props.data))
+    let arr = Object.entries(this.props.data)
+    arr.sort((a,b) => b[0].localeCompare(a[0]))
 
     const items = []
-    for (const [key, value] of Object.entries(this.props.data)) {
-      console.log(`${key}: ${value}`);
+    for (const [key, value] of arr) {
       items.push(<DockerContainer containerName={key} status={value} />)
     }
   
